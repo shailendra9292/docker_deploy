@@ -1,6 +1,6 @@
-FROM python:3.7-alpine
-COPY . /app/
+FROM python:latest
 WORKDIR /app
-RUN pip install -r requirements.txt
-CMD ["python", "app.py"]
-
+COPY . /app/
+RUN pip install --no-cache-dir -r requirements.txt
+EXPOSE 8000 8501
+CMD ["python", "run_servers.py"]

@@ -3,7 +3,7 @@ import os
 import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import accuracy_score, classification_report
 import joblib
 
 # Import data
@@ -32,8 +32,10 @@ x_train, x_test, y_train, y_test = train_test_split(X, y, test_size = 0.25)
 rf = RandomForestClassifier()
 rf.fit(x_train, y_train)
 rf_predict=rf.predict(x_test)
+print(data['quality'])
 
 print('Accuracy of the model: {}%'.format(accuracy_score(y_test, rf_predict)*100))
+print(classification_report(y_test, rf_predict))
 
 joblib.dump(rf,"RandomForest.pkl", protocol =2) # Save Model
 print("Model dumped")
